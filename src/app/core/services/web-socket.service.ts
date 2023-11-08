@@ -2,12 +2,17 @@ import { Injectable } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
 import { Observable } from 'rxjs';
 
+import { environment } from 'src/environments/environment';
+
 @Injectable()
 export class WebSocketService {
   socket: Socket;
 
   constructor() {
-    this.socket = io('http://localhost:3000');
+    const { token } = JSON.parse(localStorage.getItem('user') || '');
+    this.socket = io(environment.apiUrl, {
+      query: { token },
+    });
   }
 
   listen(eventname: string): Observable<any> {

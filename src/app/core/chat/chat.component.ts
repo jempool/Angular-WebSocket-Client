@@ -16,6 +16,7 @@ export class ChatComponent implements OnInit {
   constructor(private webSocketService: WebSocketService) {}
 
   ngOnInit(): void {
+    this.userName = JSON.parse(localStorage.getItem('user')!)?.user?.name;
     this.webSocketService.listen('typing').subscribe((data) => {
       this.updateFeedback(data);
     });

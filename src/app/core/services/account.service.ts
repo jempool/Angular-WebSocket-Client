@@ -39,9 +39,18 @@ export class AccountService {
     localStorage.removeItem('user');
     this.userSubject.next(null);
     this.router.navigate(['/account/login']);
+    //to-do: clean cookies
   }
 
-  signup(user: User) {
-    return this.http.post(`${environment.apiUrl}/auth/signup`, user);
+  signup(user: any) {
+    console.log(user);
+    return this.http.post<User>(`${environment.apiUrl}/auth/signup`, user)
+    .pipe(
+      map((user) => {
+        localStorage.setItem('user', JSON.stringify(user));
+        this.userSubject.next(user);
+        return user;
+      })
+    );
   }
 }

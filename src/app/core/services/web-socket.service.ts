@@ -9,9 +9,9 @@ export class WebSocketService {
   socket: Socket;
 
   constructor() {
-    const { token } = JSON.parse(localStorage.getItem('user') || '');
+    const { accessToken } = JSON.parse(localStorage.getItem('user') || '');
     this.socket = io(environment.apiUrl, {
-      query: { token },
+      query: { token: accessToken }
     });
   }
 

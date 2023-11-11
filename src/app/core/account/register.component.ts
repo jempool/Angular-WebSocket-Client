@@ -9,6 +9,7 @@ export class RegisterComponent implements OnInit {
   form!: FormGroup;
   loading = false;
   submitted = false;
+  errorMessage: string = "";
 
   constructor(
     private formBuilder: FormBuilder,
@@ -18,6 +19,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
+      name: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
@@ -43,7 +45,7 @@ export class RegisterComponent implements OnInit {
       },
       error: (error: any) => {
         this.loading = false;
-        // to-do: implement alerts to print errors
+        this.errorMessage = error.error.message;
       },
     });
   }

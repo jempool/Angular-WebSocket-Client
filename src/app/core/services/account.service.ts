@@ -38,16 +38,24 @@ export class AccountService {
   logout() {
     localStorage.removeItem('user');
     this.userSubject.next(null);
-    this.router.navigate(['/account/login']);
-    //to-do: clean cookies
+    this.router.navigate(['/login']);
   }
 
   signup(user: any) {
-    console.log(user);
     return this.http.post<User>(`${environment.apiUrl}/auth/signup`, user)
     .pipe(
       map((user) => {
         localStorage.setItem('user', JSON.stringify(user));
+        this.userSubject.next(user);
+        return user;
+      })
+    );
+  }
+
+  refreshToken(user: any) {
+    return this.http.post<User>(`${environment.apiUrl}/auth/refresh`, user)
+    .pipe(
+      map((user) => {
         this.userSubject.next(user);
         return user;
       })

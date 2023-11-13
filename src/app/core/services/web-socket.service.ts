@@ -9,10 +9,7 @@ export class WebSocketService {
   socket: Socket;
 
   constructor() {
-    const { accessToken } = JSON.parse(localStorage.getItem('user') || '');
-    this.socket = io(environment.apiUrl, {
-      query: { token: accessToken }
-    });
+    this.socket = io(environment.apiUrl);
   }
 
   listen(eventname: string): Observable<any> {

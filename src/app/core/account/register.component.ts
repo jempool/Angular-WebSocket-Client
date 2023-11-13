@@ -9,7 +9,7 @@ export class RegisterComponent implements OnInit {
   form!: FormGroup;
   loading = false;
   submitted = false;
-  errorMessage: string = "";
+  errorMessage: string = '';
 
   constructor(
     private formBuilder: FormBuilder,

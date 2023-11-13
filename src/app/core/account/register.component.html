@@ -1,7 +1,20 @@
 ﻿<div class="card">
   <h4 class="card-header">Register</h4>
+  <div *ngIf="errorMessage.length" class="alert alert-danger" role="alert">
+    {{errorMessage}}
+  </div>
   <div class="card-body">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input type="text" formControlName="name" class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+          <div *ngIf="f.name.errors.required">Name is required</div>
+          <div *ngIf="f.name.errors.name">Please enter valid name</div>
+          <div *ngIf="f.name.errors.minlength">Name must be at least 2 characters</div>
+        </div>
+      </div>
       <div class="mb-3">
         <label class="form-label">Email</label>
         <input type="text" formControlName="email" class="form-control"

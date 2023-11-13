@@ -38,10 +38,27 @@ export class AccountService {
   logout() {
     localStorage.removeItem('user');
     this.userSubject.next(null);
-    this.router.navigate(['/account/login']);
+    this.router.navigate(['/login']);
   }
 
-  signup(user: User) {
-    return this.http.post(`${environment.apiUrl}/auth/signup`, user);
+  signup(user: any) {
+    return this.http.post<User>(`${environment.apiUrl}/auth/signup`, user)
+    .pipe(
+      map((user) => {
+        localStorage.setItem('user', JSON.stringify(user));
+        this.userSubject.next(user);
+        return user;
+      })
+    );
+  }
+
+  refreshToken(user: any) {
+    return this.http.post<User>(`${environment.apiUrl}/auth/refresh`, user)
+    .pipe(
+      map((user) => {
+        this.userSubject.next(user);
+        return user;
+      })
+    );
   }
 }

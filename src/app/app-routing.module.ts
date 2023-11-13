@@ -9,7 +9,8 @@ import { RegisterComponent } from './core/account/register.component';
 const routes: Routes = [
   { path: 'chat', component: ChatComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'signup', component: RegisterComponent }
+  { path: 'signup', component: RegisterComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
 
 @NgModule({

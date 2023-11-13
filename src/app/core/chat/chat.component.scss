@@ -1,13 +1,3 @@
-body {
-  font-family: 'Nunito';
-}
-
-h2 {
-  font-size: 18px;
-  padding: 10px 20px;
-  color: #e67331;
-}
-
 #chat-applicaton {
   max-width: 600px;
   margin: 30px auto;
@@ -25,7 +15,6 @@ h2 {
 #output p {
   padding: 14px 0px 0 0;
   margin: 0 20px;
-  /* border-bottom: 1px solid #e9e9e9; */
   color: #555;
 }
 
@@ -58,24 +47,6 @@ input {
   font-size: 16px;
 }
 
-button {
-  background: #c98d0d;
-  color: #fff;
-  font-size: 18px;
-  border: 0;
-  padding: 12px 0;
-  width: 100%;
-  border-radius: 0 0 2px 2px;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #835b05;
-  color: #fff;
-  font-size: 18px;
-  border: 0;
-  padding: 12px 0;
-  width: 100%;
-  border-radius: 0 0 2px 2px;
-  cursor: pointer;
+#send-button {
+  min-width: 600px;
 }

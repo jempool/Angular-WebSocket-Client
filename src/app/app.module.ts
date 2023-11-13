@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WebSocketService } from './core/services/web-socket.service';
+import { httpInterceptorProviders } from './core/services/http.interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { ChatComponent } from './core/chat/chat.component';
@@ -15,15 +16,10 @@ import { RegisterComponent } from './core/account/register.component';
     AppComponent,
     ChatComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule
-  ],
-  providers: [WebSocketService],
-  bootstrap: [AppComponent]
+  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
+  providers: [WebSocketService, httpInterceptorProviders],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

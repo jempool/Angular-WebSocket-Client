@@ -42,8 +42,7 @@ export class AccountService {
   }
 
   signup(user: any) {
-    return this.http.post<User>(`${environment.apiUrl}/auth/signup`, user)
-    .pipe(
+    return this.http.post<User>(`${environment.apiUrl}/auth/signup`, user).pipe(
       map((user) => {
         localStorage.setItem('user', JSON.stringify(user));
         this.userSubject.next(user);
@@ -53,12 +52,13 @@ export class AccountService {
   }
 
   refreshToken(user: any) {
-    return this.http.post<User>(`${environment.apiUrl}/auth/refresh`, user)
-    .pipe(
-      map((user) => {
-        this.userSubject.next(user);
-        return user;
-      })
-    );
+    return this.http
+      .post<User>(`${environment.apiUrl}/auth/refresh`, user)
+      .pipe(
+        map((user) => {
+          this.userSubject.next(user);
+          return user;
+        })
+      );
   }
 }

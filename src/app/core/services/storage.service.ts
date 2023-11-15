@@ -4,7 +4,7 @@ import { User } from 'src/app/shared/models/user';
 const USER_KEY = 'user';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class StorageService {
   constructor() {}

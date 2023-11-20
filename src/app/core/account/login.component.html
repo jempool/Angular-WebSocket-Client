@@ -1,5 +1,8 @@
 ﻿<div class="card">
   <h4 class="card-header">Login</h4>
+  <div *ngIf="errorMessage.length" class="alert alert-danger" role="alert">
+    {{errorMessage}}
+  </div>
   <div class="card-body">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="mb-3">

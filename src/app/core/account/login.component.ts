@@ -9,6 +9,7 @@ export class LoginComponent implements OnInit {
   form!: FormGroup;
   loading = false;
   submitted = false;
+  errorMessage: string = '';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -43,6 +44,7 @@ export class LoginComponent implements OnInit {
         },
         error: (error: any) => {
           this.loading = false;
+          this.errorMessage = error.error.message;
         },
       });
   }

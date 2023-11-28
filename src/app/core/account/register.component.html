@@ -1,45 +1,52 @@
-﻿<div class="card">
-  <h4 class="card-header">Register</h4>
-  <div *ngIf="errorMessage.length" class="alert alert-danger" role="alert">
-    {{errorMessage}}
-  </div>
-  <div class="card-body">
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <div class="mb-3">
-        <label class="form-label">Name</label>
-        <input type="text" formControlName="name" class="form-control"
-          [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
-        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
-          <div *ngIf="f.name.errors.required">Name is required</div>
-          <div *ngIf="f.name.errors.name">Please enter valid name</div>
-          <div *ngIf="f.name.errors.minlength">Name must be at least 2 characters</div>
+﻿<div class="container col-md-4 offset-md-4 mt-5">
+  <div class="card">
+    <h4 class="card-header">Sign Up</h4>
+    <div *ngIf="errorMessage.length" class="alert alert-danger" role="alert">
+      {{errorMessage}}
+    </div>
+    <div class="card-body">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+          <label class="form-label">Name</label>
+          <input type="text" formControlName="name" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+          <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+            <div *ngIf="f.name.errors.required">Name is required</div>
+            <div *ngIf="f.name.errors.name">Please enter valid name</div>
+            <div *ngIf="f.name.errors.minlength">Name must be at least 2 characters</div>
+          </div>
         </div>
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Email</label>
-        <input type="text" formControlName="email" class="form-control"
-          [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
-        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-          <div *ngIf="f.email.errors.required">Email is required</div>
-          <div *ngIf="f.email.errors.email">Please enter valid email address</div>
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          <input type="text" formControlName="email" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <div *ngIf="f.email.errors.required">Email is required</div>
+            <div *ngIf="f.email.errors.email">Please enter valid email address</div>
+          </div>
         </div>
-      </div>
-      <div class="mb-3">
-        <label class="form-label">Password</label>
-        <input type="password" formControlName="password" class="form-control"
-          [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-          <div *ngIf="f.password.errors.required">Password is required</div>
-          <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+        <div class="mb-3">
+          <label class="form-label">Password</label>
+          <input type="password" formControlName="password" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required">Password is required</div>
+            <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+          </div>
         </div>
-      </div>
-      <div>
-        <button [disabled]="loading" class="btn btn-primary">
-          <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
-          Register
-        </button>
-        <a routerLink="/login" class="btn btn-link">Cancel</a>
-      </div>
-    </form>
+        <div>
+          <button [disabled]="loading" class="btn btn-primary w-100">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm me-1"></span>
+            Register
+          </button>
+          <div class="d-flex align-items-center">
+            <hr class="flex-grow-1">
+            <span class="px-3">Or</span>
+            <hr class="flex-grow-1">
+          </div>
+          <a routerLink="/login" class="btn btn-link w-100">Login</a>
+        </div>
+      </form>
+    </div>
   </div>
 </div>

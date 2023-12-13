@@ -9,7 +9,13 @@
 #chat-window {
   height: 400px;
   overflow: auto;
+  overflow-wrap: break-word;
   background: #f9f9f9;
+}
+
+mark {
+  background-color: rgba(255, 255, 0, 0.72);
+  color: #000;
 }
 
 #output p {
@@ -48,5 +54,36 @@ input {
 }
 
 #send-button {
-  min-width: 600px;
+  // min-width: 600px;
+  width: 100%;
+  border-radius: 0;
+}
+
+.chat-container {
+  max-width: 600px;
+  align-content: center;
+}
+
+#downloadPdf {
+  cursor: pointer;
+  background-color: transparent;
+  margin-right: 5px;
+  color: red;
+  border: 0px;
+}
+
+#message {
+  font-family: "Consolas";
+  font-size: 1em;
+  color: #333;
+
+  &::placeholder {
+    color: #999;
+  }
+}
+
+@media (max-width: 576px) {
+  #chat-application {
+    margin: 10px;
+  }
 }

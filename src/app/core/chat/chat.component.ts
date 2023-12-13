@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { WebSocketService } from '../services/web-socket.service';
 import { AccountService } from '../services/account.service';
 import { ChatService } from '../services/chat.service';
+import { PdfService } from '../services/pdf.service';
 
 @Component({
   selector: 'app-chat',
@@ -10,6 +11,7 @@ import { ChatService } from '../services/chat.service';
 })
 export class ChatComponent implements OnInit {
   title = 'Websocket Angular client ';
+  topic: string = '';
   userName: string = '';
   message: string = '';
   feedback: string = '';
@@ -19,7 +21,8 @@ export class ChatComponent implements OnInit {
   constructor(
     private webSocketService: WebSocketService,
     private accountService: AccountService,
-    private chatService: ChatService
+    private chatService: ChatService,
+    private pdfService: PdfService
   ) {}
 
   ngOnInit(): void {
@@ -37,6 +40,10 @@ export class ChatComponent implements OnInit {
       .getMessagesHistory()
       .subscribe((messages: any[]) => (this.output = [...messages]));
 
+    this.chatService
+      .getTopic()
+      .subscribe((topic: any) => (this.topic = topic.topic));
+
     this.scrollToBottom();
   }
 
@@ -49,6 +56,11 @@ export class ChatComponent implements OnInit {
       this.chatScrollContainer.nativeElement.scrollTop =
         this.chatScrollContainer.nativeElement.scrollHeight;
     } catch (err) {}
+  }
+
+  downloadChatPdf() {
+    const outputTitle = ['User', 'Message'];
+    this.pdfService.downloadChatPdf(this.topic, this.output, outputTitle);
   }
 
   messageTyping(): void {

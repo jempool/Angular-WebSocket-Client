@@ -15,4 +15,12 @@ export class ChatService {
       })
     );
   }
+
+  getTopic() {
+    return this.http.get<any>(`${environment.apiUrl}/topics/today`).pipe(
+      map((topic) => {
+        return topic;
+      })
+    );
+  }
 }
